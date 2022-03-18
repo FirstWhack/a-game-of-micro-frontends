@@ -1,8 +1,8 @@
 const START_FPS = 6;
 
 export const CONSTANTS = {
-  gridSize: 30,
-  tileSizeMultiplier: 0.5,
+  gridSize: 20,
+  tileSizeMultiplier: 0.9,
   get tileSize() {
     return this.gridSize * this.tileSizeMultiplier;
   },
