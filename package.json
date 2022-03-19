@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start:sandbox": "yarn install && yarn start",
-    "start": "yarn workspaces foreach -pivt run start",
+    "start": "yarn workspaces foreach -piv run start",
     "build": "yarn workspaces foreach -pivt run build"
   },
   "keywords": [],
