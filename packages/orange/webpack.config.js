@@ -29,10 +29,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "tomato",
+      name: "orange",
       filename: "remoteEntry.js",
       exposes: {
-        "./Tomato": "./app"
+        "./Orange": "./app"
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`

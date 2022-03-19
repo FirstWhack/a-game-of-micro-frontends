@@ -14,12 +14,9 @@
     "declarationDir": "./types",
     "paths": {
       "engine/Store": ["node_modules/@micro-snake/engine/src/gameStore.ts"],
-      "apple/Apple": ["node_modules/@micro-snake/plugin-apple/app.tsx"],
-      "plum/Plum": ["node_modules/@micro-snake/plugin-plum/app.tsx"],
-      "tomato/Tomato": ["node_modules/@micro-snake/plugin-tomato/app.tsx"],
-      "snake/GameStore": [
-        "node_modules/@micro-snake/game/src/store/gameStore.ts"
-      ]
+      "apple/Apple": ["node_modules/@micro-snake/plugin-apple"],
+      "plum/Plum": ["node_modules/@micro-snake/plugin-plum"],
+      "orange/Orange": ["node_modules/@micro-snake/plugin-orange"]
     }
   },
   "experimentalDecorators": true

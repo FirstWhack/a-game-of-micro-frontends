@@ -38,7 +38,7 @@ module.exports = {
         apple: `apple@${getRemoteEntryUrl(1338)}`,
         engine: `engine@${getRemoteEntryUrl(1339)}`,
         plum: `plum@${getRemoteEntryUrl(1340)}`,
-        tomato: `tomato@${getRemoteEntryUrl(1341)}`
+        orange: `orange@${getRemoteEntryUrl(1341)}`
       },
       shared: [
         {

@@ -36,7 +36,7 @@ const Snake: GamePlugin = observer(function ({
     Promise.all([
       import("apple/Apple"),
       import("plum/Plum"),
-      import("tomato/Tomato"),
+      import("orange/Orange"),
     ]).then((resolvedPlugins) => {
       setPlugins(
         plugins.concat(resolvedPlugins.map((plugin) => plugin.default))

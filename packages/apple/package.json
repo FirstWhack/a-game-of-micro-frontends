@@ -2,7 +2,7 @@
   "name": "@micro-snake/plugin-apple",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js",
+  "main": "app.tsx",
   "devDependencies": {
     "@babel/core": "7.14.3",
     "@babel/preset-react": "7.13.13",

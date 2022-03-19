@@ -417,9 +417,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@micro-snake/plugin-plum@workspace:packages/plum":
+"@micro-snake/plugin-orange@workspace:packages/orange":
   version: 0.0.0-use.local
-  resolution: "@micro-snake/plugin-plum@workspace:packages/plum"
+  resolution: "@micro-snake/plugin-orange@workspace:packages/orange"
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
@@ -443,9 +443,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@micro-snake/plugin-tomato@workspace:packages/tomato":
+"@micro-snake/plugin-plum@workspace:packages/plum":
   version: 0.0.0-use.local
-  resolution: "@micro-snake/plugin-tomato@workspace:packages/tomato"
+  resolution: "@micro-snake/plugin-plum@workspace:packages/plum"
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
