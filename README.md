@@ -2,11 +2,11 @@
 
 ## Workflows
 
-![main](https://github.com/FirstWhack/mobx-game-state/actions/workflows/main.yml/badge.svg)
+![main](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/main.yml/badge.svg)
 
 ## Online IDE
 
-This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/mobx-game-state)!
+This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)!
 
 # Contents
 
