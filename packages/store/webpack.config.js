@@ -1,53 +1,53 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { ModuleFederationPlugin } = webpack.container;
 
 module.exports = {
   entry: {},
-  mode: "development",
-  devtool: "source-map",
+  mode: 'development',
+  devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     port: 1339
   },
   output: {
-    publicPath: "auto"
+    publicPath: 'auto'
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         exclude: /node_modules/
       },
       {
         test: /\.jsx?$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          presets: ["@babel/preset-react"]
+          presets: ['@babel/preset-react']
         }
       }
     ]
   },
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: ['.ts', '.js']
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "engine",
-      filename: "remoteEntry.js",
+      name: 'engine',
+      filename: 'remoteEntry.js',
       exposes: {
-        "./Store": "./src/gameStore"
+        './Store': './src/gameStore'
       },
       shared: [
         {
           react: { singleton: true, eager: true },
-          "react-dom": { singleton: true, eager: true },
+          'react-dom': { singleton: true, eager: true },
           mobx: { eager: true },
-          "mobx-react": { eager: true }
+          'mobx-react': { eager: true }
         }
       ]
     })

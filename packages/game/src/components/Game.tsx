@@ -6,14 +6,15 @@ import {
   GameState,
   GameStore,
   LazyPluginProvider,
-  velocityByKeyCode,
-} from "@micro-snake/engine";
-import { observer } from "mobx-react";
-import * as React from "react";
-import { Layer, Rect, Stage, Text } from "react-konva";
+  velocityByKeyCode
+} from '@micro-snake/engine';
+import { observer } from 'mobx-react';
+import * as React from 'react';
+import { Layer, Rect, Stage, Text } from 'react-konva';
+import Overlay from './Overlay';
 
 const handleKeyDown = (
-  setVelocity: (velocity: GameState["velocity"]) => void,
+  setVelocity: (velocity: GameState['velocity']) => void,
   { keyCode }: React.KeyboardEvent<HTMLDivElement>
 ) => {
   if (velocityByKeyCode[keyCode]) {
@@ -22,7 +23,7 @@ const handleKeyDown = (
 };
 
 const Snake: GamePlugin = observer(function ({
-  gameStore,
+  gameStore
 }: {
   gameStore: GameStore;
 }) {
@@ -34,9 +35,9 @@ const Snake: GamePlugin = observer(function ({
   // TODO: Runtime plugin management
   React.useEffect(() => {
     Promise.all([
-      import("apple/Apple"),
-      import("plum/Plum"),
-      import("orange/Orange"),
+      import('apple/Apple'),
+      import('plum/Plum'),
+      import('orange/Orange')
     ]).then((resolvedPlugins) => {
       setPlugins(
         plugins.concat(resolvedPlugins.map((plugin) => plugin.default))
@@ -62,7 +63,7 @@ const Snake: GamePlugin = observer(function ({
 
   return (
     <div
-      className="snake"
+      className='snake'
       onKeyDown={handleKeyDown.bind(null, setVelocity)}
       tabIndex={1}
     >
@@ -72,14 +73,14 @@ const Snake: GamePlugin = observer(function ({
           <Rect
             width={CONSTANTS.canvasSize}
             height={CONSTANTS.canvasSize}
-            fill="black"
+            fill='black'
           />
         </Layer>
         <Layer>
           {/* snake */}
           {trail.map(({ x, y }) => (
             <Rect
-              fill="lime"
+              fill='lime'
               width={CONSTANTS.tileSize}
               height={CONSTANTS.tileSize}
               x={x * CONSTANTS.gridSize}
@@ -87,24 +88,17 @@ const Snake: GamePlugin = observer(function ({
             />
           ))}
         </Layer>
+        {/* add remote plugins */}
         {plugins.map((Plugin) => (
           <Plugin />
         ))}
-        {/* <RewardApple /> */}
-        {/* <PunishingPlum /> */}
-        <Layer>
-          {/* Overlay/Score */}
-          <Text
-            text={`Score: ${score}`}
-            fill="white"
-            padding={10}
-          />
-        </Layer>
+        {/* this is a local plugin */}
+        <Overlay gameStore={gameStore} />
       </Stage>
     </div>
   );
 });
 
 export default () => (
-  <LazyPluginProvider Plugin={Snake} asyncLoad={() => import("engine/Store")} />
+  <LazyPluginProvider Plugin={Snake} asyncLoad={() => import('engine/Store')} />
 );

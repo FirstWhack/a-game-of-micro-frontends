@@ -1,17 +1,13 @@
-import {
-    CONSTANTS,
-    GamePlugin,
-    GameStore
-} from "@micro-snake/engine";
-import { observer } from "mobx-react";
-import React from "react";
-import { Rect } from "react-konva";
+import { CONSTANTS, GamePlugin, GameStore } from '@micro-snake/engine';
+import { observer } from 'mobx-react';
+import React from 'react';
+import { Rect } from 'react-konva';
 
 const FPS_PENALTY = 2;
 const PENALTY_TIMEOUT = 5000;
 
 const PunishingPlum: GamePlugin = observer(function ({
-  gameStore,
+  gameStore
 }: {
   gameStore: GameStore;
 }) {
@@ -35,7 +31,7 @@ const PunishingPlum: GamePlugin = observer(function ({
 
   return (
     <Rect
-      stroke="purple"
+      stroke='purple'
       width={CONSTANTS.tileSize}
       height={CONSTANTS.tileSize}
       x={plumPosition.x * CONSTANTS.gridSize}
