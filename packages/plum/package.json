@@ -24,7 +24,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@micro-snake/game": "workspace:*",
+    "@micro-snake/engine": "workspace:*",
     "konva": "^8.3.4",
     "mobx": "^6.3.13",
     "mobx-react": "^7.2.1",

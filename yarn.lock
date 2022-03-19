@@ -340,7 +340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@micro-snake/engine@workspace:packages/store":
+"@micro-snake/engine@workspace:*, @micro-snake/engine@workspace:packages/store":
   version: 0.0.0-use.local
   resolution: "@micro-snake/engine@workspace:packages/store"
   dependencies:
@@ -362,12 +362,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@micro-snake/game@workspace:*, @micro-snake/game@workspace:packages/game":
+"@micro-snake/game@workspace:packages/game":
   version: 0.0.0-use.local
   resolution: "@micro-snake/game@workspace:packages/game"
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
+    "@micro-snake/engine": "workspace:*"
     "@types/react": ^17.0.39
     "@types/react-dom": ^17.0.11
     babel-loader: 8.2.2
@@ -397,7 +398,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
-    "@micro-snake/game": "workspace:*"
+    "@micro-snake/engine": "workspace:*"
     "@types/react": ^17.0.39
     "@types/react-dom": ^17.0.11
     babel-loader: 8.2.2
@@ -423,7 +424,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
-    "@micro-snake/game": "workspace:*"
+    "@micro-snake/engine": "workspace:*"
     "@types/react": ^17.0.39
     "@types/react-dom": ^17.0.11
     babel-loader: 8.2.2
@@ -449,7 +450,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.14.3
     "@babel/preset-react": 7.13.13
-    "@micro-snake/game": "workspace:*"
+    "@micro-snake/engine": "workspace:*"
     "@types/react": ^17.0.39
     "@types/react-dom": ^17.0.11
     babel-loader: 8.2.2
