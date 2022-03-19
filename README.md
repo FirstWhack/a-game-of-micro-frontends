@@ -5,11 +5,11 @@ The end result is a game of Snake with runtime-plugin support.
 
 ## Workflows
 
-![main](https://github.com/FirstWhack/mobx-game-state/actions/workflows/main.yml/badge.svg)
+![main](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/main.yml/badge.svg)
 
 ## Online IDE
 
-This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/mobx-game-state)!
+This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)!
 
 # Contents
 
@@ -70,7 +70,7 @@ Functionality
 
 ### Plum
 
-Runs at: http://localhost:1338
+Runs at: http://localhost:1340
 
 - Type: Penalty
 
@@ -81,7 +81,7 @@ Functionality
 
 ### Orange
 
-Runs at: http://localhost:1338
+Runs at: http://localhost:1341
 
 - Type: Exotic
 
