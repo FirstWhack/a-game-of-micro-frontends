@@ -1,4 +1,5 @@
 # FRP Snake with Runtime Plugin Support
+
 This project flips the script on Micro-Frontends expansion. Typical micro-frontends extend functionality in a lateral/horizontal manner, adding additional pages or components. This project exemplifies Micro-Frontends in a "stacking" or vertically expanding manner, each Micro-Frontend rendering it's own `<canvas>` to be stacked on top of all other canvas'.
 
 The end result is a game of Snake with runtime-plugin support.
@@ -27,7 +28,7 @@ Public API:
   - `getRandomPosition()` - always returns a _new_ random Vector2d within the bounds of play area
   - `setVelocity()` - update the player velocity
   - `setFPS()` - set the game speed
-  - `setTailSize()` - update the maximum tail size (tail size equated to Score)
+  - `setTailSize()` - update the maximum tail size
   - `suspendGame()` - suspends (does not destroy) the current game
   - `startGame()` - starts the game, safe to call even if game is already started
 - Properties:
@@ -37,7 +38,8 @@ Public API:
   - `fps` - the current game speed
   - [computed] `frameInterval` - the frameInterval in-use by the render engine, computed based on the value of `fps`
   - `running` - determines whether the render loop is executing
-  - `tailSize` - the maximum size of the player's tail (equates to Score)
+  - [observable] `tailSize` - the maximum size of the player's tail
+  - [computed] `score` - the tail size minus starting tail size
   - `lastFrameTime` - the time of the last frame render, used by the render engine to control game/render speed
   - `velocity` - Current Velocity2d of the player. e.g. `{x: 1, y: 0}` = player is moving to the "right" by 1 tile at a time
 

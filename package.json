@@ -8,10 +8,17 @@
   "scripts": {
     "start:sandbox": "yarn install && yarn start",
     "start": "yarn workspaces foreach -piv run start",
-    "build": "yarn workspaces foreach -pivt run build"
+    "build": "yarn workspaces foreach -pivt run build",
+    "postinstall": "husky install",
+    "pretty-quick": "pretty-quick"
   },
   "keywords": [],
   "name": "micro-snake",
   "description": "",
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "prettier": "^2.6.0",
+    "pretty-quick": "^3.1.3"
+  }
 }

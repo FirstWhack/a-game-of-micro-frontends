@@ -2,11 +2,11 @@ import {
   CONSTANTS,
   GamePlugin,
   GameStore,
-  LazyPluginProvider,
-} from "@micro-snake/engine";
-import { observer } from "mobx-react";
-import React from "react";
-import { Layer, Rect, Star } from "react-konva";
+  LazyPluginProvider
+} from '@micro-snake/engine';
+import { observer } from 'mobx-react';
+import React from 'react';
+import { Layer, Rect, Star } from 'react-konva';
 
 const REDUCTION_AMOUNT = 2;
 const REDUCTION_LENGTH = 5000;
@@ -14,16 +14,12 @@ const REDUCTION_LENGTH = 5000;
 const MIN_SCORE = 2;
 
 const TeleportingOrange: GamePlugin = observer(function ({
-  gameStore,
+  gameStore
 }: {
   gameStore: GameStore;
 }) {
-  const {
-    playerPosition,
-    setFPS,
-    getRandomPosition,
-    setPlayerPosition,
-  } = gameStore;
+  const { playerPosition, setFPS, getRandomPosition, setPlayerPosition } =
+    gameStore;
 
   const [orangePosition, setPlumPosition] = React.useState(getRandomPosition());
 
@@ -57,7 +53,7 @@ const TeleportingOrange: GamePlugin = observer(function ({
           numPoints={5}
           outerRadius={starSize}
           offset={{ x: -starSize, y: -starSize }}
-          stroke="orange"
+          stroke='orange'
           width={starSize}
           height={starSize}
           x={orangePosition.x * CONSTANTS.gridSize}
@@ -71,6 +67,6 @@ const TeleportingOrange: GamePlugin = observer(function ({
 export default () => (
   <LazyPluginProvider
     Plugin={TeleportingOrange}
-    asyncLoad={() => import("engine/Store")}
+    asyncLoad={() => import('engine/Store')}
   />
 );

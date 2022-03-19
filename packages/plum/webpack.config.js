@@ -1,37 +1,37 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { ModuleFederationPlugin } = webpack.container;
 
 module.exports = {
-  entry: "./index.js",
-  mode: "development",
+  entry: './index.js',
+  mode: 'development',
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     port: 1340
   },
   output: {
-    publicPath: "auto"
+    publicPath: 'auto'
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"]
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "plum",
-      filename: "remoteEntry.js",
+      name: 'plum',
+      filename: 'remoteEntry.js',
       exposes: {
-        "./Plum": "./app"
+        './Plum': './app'
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`
@@ -39,20 +39,20 @@ module.exports = {
       shared: [
         {
           react: { singleton: true, eager: true },
-          "react-dom": { singleton: true, eager: true },
+          'react-dom': { singleton: true, eager: true },
           mobx: { eager: true },
-          "mobx-react": { eager: true }
+          'mobx-react': { eager: true }
         }
       ]
     }),
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: './index.html'
     })
   ]
 };
 
 function getRemoteEntryUrl(port) {
-  const { CODESANDBOX_SSE, HOSTNAME = "" } = process.env;
+  const { CODESANDBOX_SSE, HOSTNAME = '' } = process.env;
 
   // Check if the example is running on codesandbox
   // https://codesandbox.io/docs/environment
@@ -60,7 +60,7 @@ function getRemoteEntryUrl(port) {
     return `//localhost:${port}/remoteEntry.js`;
   }
 
-  const parts = HOSTNAME.split("-");
+  const parts = HOSTNAME.split('-');
   const codesandboxId = parts[parts.length - 1];
 
   return `//${codesandboxId}-${port}.sse.codesandbox.io/remoteEntry.js`;

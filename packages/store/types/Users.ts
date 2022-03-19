@@ -15,7 +15,6 @@ interface User {
   };
 }
 
-
 interface DemoUser extends User {
-  flags: number
-};
+  flags: number;
+}

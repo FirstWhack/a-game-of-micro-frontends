@@ -5,13 +5,13 @@ import {
   makeObservable,
   observable,
   onBecomeObserved,
-  onBecomeUnobserved,
-} from "mobx";
-import { createContext } from "react";
-import { CONSTANTS, GameState } from "./gameConstants";
+  onBecomeUnobserved
+} from 'mobx';
+import { createContext } from 'react';
+import { CONSTANTS, GameState } from './gameConstants';
 
 // without configuring enforceActions it would be possible to modify any observable from anywhere
-configure({ enforceActions: "observed" });
+configure({ enforceActions: 'observed' });
 
 // base class
 export class GameStore implements GameState {
@@ -20,7 +20,7 @@ export class GameStore implements GameState {
   playerPosition = CONSTANTS.startPosition;
   velocity = {
     x: 0,
-    y: 0,
+    y: 0
   };
   trail = [CONSTANTS.startPosition];
   tailSize = CONSTANTS.startTailSize;
@@ -43,11 +43,12 @@ export class GameStore implements GameState {
       tailSize: observable,
       frameInterval: computed,
       score: computed,
+      running: observable
     });
 
     // setup lazy observables
-    onBecomeObserved(this, "playerPosition", this.startGame);
-    onBecomeUnobserved(this, "playerPosition", this.suspendGame);
+    onBecomeObserved(this, 'playerPosition', this.startGame);
+    onBecomeUnobserved(this, 'playerPosition', this.suspendGame);
   }
   suspendGame = action(() => {
     this.running = false;
@@ -73,13 +74,13 @@ export class GameStore implements GameState {
 
   updatePlayerPosition = action(
     (
-      { x: px, y: py }: GameState["playerPosition"],
-      { x: vx, y: vy }: GameState["velocity"]
+      { x: px, y: py }: GameState['playerPosition'],
+      { x: vx, y: vy }: GameState['velocity']
     ) => {
       if (vx || vy) {
         const newPlayerPosition = {
           x: px + vx,
-          y: py + vy,
+          y: py + vy
         };
 
         if (newPlayerPosition.x < 0) {
@@ -101,23 +102,23 @@ export class GameStore implements GameState {
     }
   );
 
-  setVelocity = action((newVelocity: GameState["velocity"]) => {
+  setVelocity = action((newVelocity: GameState['velocity']) => {
     this.velocity = newVelocity;
   });
-  setTailSize = action((tailSize: GameState["tailSize"]) => {
+  setTailSize = action((tailSize: GameState['tailSize']) => {
     this.tailSize = tailSize;
   });
-  setFPS = action((fps: GameState["fps"]) => {
+  setFPS = action((fps: GameState['fps']) => {
     this.fps = fps;
   });
   setPlayerPosition = action(
-    (newPlayerPosition: GameState["playerPosition"]) => {
+    (newPlayerPosition: GameState['playerPosition']) => {
       this.playerPosition = newPlayerPosition;
     }
   );
   getRandomPosition = () => ({
     x: Math.floor(Math.random() * this.gridSize),
-    y: Math.floor(Math.random() * this.gridSize),
+    y: Math.floor(Math.random() * this.gridSize)
   });
 }
 

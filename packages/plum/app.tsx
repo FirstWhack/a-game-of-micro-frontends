@@ -1,14 +1,14 @@
-import { GamePlugin, GameStore, LazyPluginProvider } from "@micro-snake/engine";
-import { observer } from "mobx-react";
-import React from "react";
-import { Layer } from "react-konva";
-import PunishingPlum from "./plum";
+import { GamePlugin, GameStore, LazyPluginProvider } from '@micro-snake/engine';
+import { observer } from 'mobx-react';
+import React from 'react';
+import { Layer } from 'react-konva';
+import PunishingPlum from './plum';
 
 const MIN_PLUMS = 2;
 const PLUM_SCORE_MULTIPLIER = 0.25;
 
 const PlumContainer: GamePlugin = observer(function ({
-  gameStore,
+  gameStore
 }: {
   gameStore: GameStore;
 }) {
@@ -34,6 +34,6 @@ const PlumContainer: GamePlugin = observer(function ({
 export default () => (
   <LazyPluginProvider
     Plugin={PlumContainer}
-    asyncLoad={() => import("engine/Store")}
+    asyncLoad={() => import('engine/Store')}
   />
 );

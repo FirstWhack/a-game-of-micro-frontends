@@ -11,7 +11,7 @@ export const CONSTANTS = {
     return { x: this.gridSize / 2, y: this.gridSize / 2 };
   },
   startFps: 6,
-  startTailSize: 5,
+  startTailSize: 5
 };
 
 export interface GameState {
@@ -28,10 +28,10 @@ export interface GameState {
   running: boolean;
 }
 
-export const velocityByKeyCode: { [key: number]: GameState["velocity"] } = {
+export const velocityByKeyCode: { [key: number]: GameState['velocity'] } = {
   // these should really account for the tileSize
   37: { x: -1, y: 0 },
   38: { x: 0, y: -1 },
   39: { x: 1, y: 0 },
-  40: { x: 0, y: 1 },
+  40: { x: 0, y: 1 }
 };

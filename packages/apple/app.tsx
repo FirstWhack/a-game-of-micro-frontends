@@ -2,14 +2,14 @@ import {
   CONSTANTS as GameConstants,
   GamePlugin,
   GameStore,
-  LazyPluginProvider,
-} from "@micro-snake/engine";
-import { observer } from "mobx-react";
-import React from "react";
-import { Layer, Rect } from "react-konva";
+  LazyPluginProvider
+} from '@micro-snake/engine';
+import { observer } from 'mobx-react';
+import React from 'react';
+import { Layer, Rect } from 'react-konva';
 
 const Apple: GamePlugin = observer(function ({
-  gameStore,
+  gameStore
 }: {
   gameStore: GameStore;
 }) {
@@ -32,7 +32,7 @@ const Apple: GamePlugin = observer(function ({
   return (
     <Layer>
       <Rect
-        fill="red"
+        fill='red'
         width={GameConstants.tileSize}
         height={GameConstants.tileSize}
         x={applePosition.x * GameConstants.gridSize}
@@ -43,5 +43,5 @@ const Apple: GamePlugin = observer(function ({
 });
 
 export default () => (
-  <LazyPluginProvider Plugin={Apple} asyncLoad={() => import("engine/Store")} />
+  <LazyPluginProvider Plugin={Apple} asyncLoad={() => import('engine/Store')} />
 );
