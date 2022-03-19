@@ -1,4 +1,3 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import {
   action,
   computed,
@@ -15,7 +14,7 @@ import { CONSTANTS, GameState } from "./gameConstants";
 configure({ enforceActions: "observed" });
 
 // base class
-class APIStore implements GameState {
+export class GameStore implements GameState {
   gridSize = CONSTANTS.gridSize;
   // initial game state, player is centered with no velocity
   playerPosition = CONSTANTS.startPosition;
@@ -38,7 +37,7 @@ class APIStore implements GameState {
     makeObservable(this, {
       playerPosition: observable,
       trail: observable,
-      frameInterval: computed
+      frameInterval: computed,
     });
 
     // setup lazy observables
@@ -106,10 +105,19 @@ class APIStore implements GameState {
   setFPS = action((fps: GameState["fps"]) => {
     this.fps = fps;
   });
+  setPlayerPosition = action((newPlayerPosition: GameState['playerPosition']) => {
+    this.playerPosition = newPlayerPosition;
+  });
+  getRandomPosition = () => ({
+    x: Math.floor(Math.random() * this.gridSize),
+    y: Math.floor(Math.random() * this.gridSize),
+  });
 }
 
 // all references should point to this singleton.
 // If store is accessed outside of useContext (e.g. outside of React) you need to use this instance (unless you want multiple stores)!
-export const APIStoreInstance = new APIStore();
+export const GameStoreInstance = new GameStore();
 
-export const APIStoreContext = createContext(APIStoreInstance);
+export const GameStoreContext = createContext(GameStoreInstance);
+
+export type GamePlugin = React.FunctionComponent<{ gameStore: GameStore }>;

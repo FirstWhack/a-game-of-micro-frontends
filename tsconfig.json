@@ -1,18 +1,23 @@
 {
-    "include": [
-        "./src/**/*"
-    ],
-    "compilerOptions": {
-        "strict": true,
-        "esModuleInterop": true,
-        "lib": [
-            "dom",
-            "es2015"
-        ],
-        "target": "es5",
-        "jsx": "react",
-        "experimentalDecorators": true,
-        "moduleResolution": "node"
-    },
-    "experimentalDecorators": true
+  "include": ["./packages/**/*"],
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": ["dom", "es2015"],
+    "target": "es5",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "./types",
+    "paths": {
+      "engine/Store": ["node_modules/@micro-snake/engine/src/gameStore.ts"],
+      "apple/Apple": ["node_modules/@micro-snake/plugin-apple"],
+      "plum/Plum": ["node_modules/@micro-snake/plugin-plum"],
+      "orange/Orange": ["node_modules/@micro-snake/plugin-orange"]
+    }
+  },
+  "experimentalDecorators": true
 }

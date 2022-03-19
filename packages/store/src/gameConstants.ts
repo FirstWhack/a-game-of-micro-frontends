@@ -1,5 +1,3 @@
-const START_FPS = 6;
-
 export const CONSTANTS = {
   gridSize: 20,
   tileSizeMultiplier: 0.9,
@@ -16,11 +14,6 @@ export const CONSTANTS = {
   startTailSize: 5,
 };
 
-export interface Velocity {
-  x: number;
-  y: number;
-}
-
 export interface GameState {
   playerPosition: { x: number; y: number };
   trail: { x: number; y: number }[];
@@ -35,8 +28,8 @@ export interface GameState {
   running: boolean;
 }
 
-export const velocityByKeyCode: { [key: number]: Velocity } = {
-  // these should really account for the tileSize 
+export const velocityByKeyCode: { [key: number]: GameState["velocity"] } = {
+  // these should really account for the tileSize
   37: { x: -1, y: 0 },
   38: { x: 0, y: -1 },
   39: { x: 1, y: 0 },

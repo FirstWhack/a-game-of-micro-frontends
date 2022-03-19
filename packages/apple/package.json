@@ -1,0 +1,35 @@
+{
+  "name": "@micro-snake/plugin-apple",
+  "version": "0.0.0",
+  "private": true,
+  "main": "app.tsx",
+  "devDependencies": {
+    "@babel/core": "7.14.3",
+    "@babel/preset-react": "7.13.13",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "babel-loader": "8.2.2",
+    "html-webpack-plugin": "5.3.1",
+    "serve": "11.3.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "5.37.1",
+    "webpack-cli": "4.9.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "scripts": {
+    "start": "webpack-cli serve",
+    "build": "webpack --mode production",
+    "serve": "serve dist -p 1338",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@micro-snake/game": "workspace:*",
+    "konva": "^8.3.4",
+    "mobx": "^6.3.13",
+    "mobx-react": "^7.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-konva": "^17.0.2-5"
+  }
+}
