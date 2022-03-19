@@ -1,5 +1,5 @@
 # FRP Snake with Runtime Plugin Support
-This project flips the script on Micro-Frontends expansion. Typical micro-frontends extend functionality in a lateral/horizontal manner, adding additional pages or components. This project examplifies Micro-Frontends in a "stacking" or vertically expanding manner, each Micro-Frontend rendering it's own `<canvas>` to be stacked on top of all other canvas'.
+This project flips the script on Micro-Frontends expansion. Typical micro-frontends extend functionality in a lateral/horizontal manner, adding additional pages or components. This project exemplifies Micro-Frontends in a "stacking" or vertically expanding manner, each Micro-Frontend rendering it's own `<canvas>` to be stacked on top of all other canvas'.
 
 The end result is a game of Snake with runtime-plugin support.
 
