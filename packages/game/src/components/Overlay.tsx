@@ -1,11 +1,7 @@
-// import RewardApple from "./RewardApple";
-// import PunishingPlum from "./PunishingPlum";
-import { CONSTANTS, GamePlugin, GameStore } from '@micro-snake/engine';
+import { CONSTANTS, GameStore } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Layer, Text } from 'react-konva';
-
-// const OVERLAY_HEIGHT = 20;
 
 const Overlay: React.FunctionComponent<{
   gameStore: GameStore;
