@@ -23,14 +23,12 @@ const TeleportingOrange: GamePlugin = observer(function ({
     setFPS,
     getRandomPosition,
     setPlayerPosition,
-    score,
   } = gameStore;
 
   const [orangePosition, setPlumPosition] = React.useState(getRandomPosition());
 
   React.useEffect(() => {
     if (
-      score >= MIN_SCORE &&
       orangePosition.x === playerPosition.x &&
       orangePosition.y === playerPosition.y
     ) {
@@ -53,7 +51,7 @@ const TeleportingOrange: GamePlugin = observer(function ({
   return (
     <Layer>
       {/* orange */}
-      {score >= MIN_SCORE && (
+      {
         <Star
           innerRadius={starSize}
           numPoints={5}
@@ -65,7 +63,7 @@ const TeleportingOrange: GamePlugin = observer(function ({
           x={orangePosition.x * CONSTANTS.gridSize}
           y={orangePosition.y * CONSTANTS.gridSize}
         />
-      )}
+      }
     </Layer>
   );
 });

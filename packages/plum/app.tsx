@@ -16,9 +16,10 @@ const PlumContainer: GamePlugin = observer(function ({
 
   const plums = React.useMemo(
     () =>
-      Array.from(Array(Math.ceil(score * PLUM_SCORE_MULTIPLIER)), () => (
-        <PunishingPlum gameStore={gameStore} />
-      )),
+      Array.from(
+        Array(Math.max(Math.ceil(score * PLUM_SCORE_MULTIPLIER), 1)),
+        () => <PunishingPlum gameStore={gameStore} />
+      ),
     [score]
   );
 
