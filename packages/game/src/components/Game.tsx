@@ -1,13 +1,19 @@
+// import RewardApple from "./RewardApple";
+// import PunishingPlum from "./PunishingPlum";
+import {
+  CONSTANTS,
+  GamePlugin,
+  GameState,
+  GameStore,
+  LazyPluginProvider,
+  velocityByKeyCode,
+} from "@micro-snake/engine";
 import { observer } from "mobx-react";
 import * as React from "react";
 import { Layer, Rect, Stage, Text } from "react-konva";
-import { CONSTANTS, Velocity, velocityByKeyCode } from "../store/gameConstants";
-import { APIStoreContext } from "../store/gameStore";
-import RewardApple from "./RewardApple";
-import PunishingPlum from "./PunishingPlum";
 
 const handleKeyDown = (
-  setVelocity: (velocity: Velocity) => void,
+  setVelocity: (velocity: GameState["velocity"]) => void,
   { keyCode }: React.KeyboardEvent<HTMLDivElement>
 ) => {
   if (velocityByKeyCode[keyCode]) {
@@ -15,11 +21,28 @@ const handleKeyDown = (
   }
 };
 
-export default observer(function Snake() {
-  const APIStore = React.useContext(APIStoreContext);
-
+const Snake: GamePlugin = observer(function ({
+  gameStore,
+}: {
+  gameStore: GameStore;
+}) {
+  const [plugins, setPlugins] = React.useState<(() => JSX.Element)[]>([]);
   const { playerPosition, setVelocity, trail, setFPS, setTailSize, tailSize } =
-    APIStore;
+    gameStore;
+
+  // dynamically load all plugins
+  // TODO: Runtime plugin management
+  React.useEffect(() => {
+    Promise.all([
+      import("apple/Apple"),
+      import("plum/Plum"),
+      import("tomato/Tomato"),
+    ]).then((resolvedPlugins) => {
+      setPlugins(
+        plugins.concat(resolvedPlugins.map((plugin) => plugin.default))
+      );
+    });
+  }, []);
 
   React.useEffect(() => {
     // check to see if the head has contacted any part of the body
@@ -64,8 +87,11 @@ export default observer(function Snake() {
             />
           ))}
         </Layer>
-        <RewardApple />
-        <PunishingPlum />
+        {plugins.map((Plugin) => (
+          <Plugin />
+        ))}
+        {/* <RewardApple /> */}
+        {/* <PunishingPlum /> */}
         <Layer>
           {/* Overlay/Score */}
           <Text
@@ -78,3 +104,7 @@ export default observer(function Snake() {
     </div>
   );
 });
+
+export default () => (
+  <LazyPluginProvider Plugin={Snake} asyncLoad={() => import("engine/Store")} />
+);
