@@ -67,7 +67,7 @@ Functionality
 
 ### Plum
 
-Runs at: http://localhost:1338
+Runs at: http://localhost:1340
 
 - Type: Penalty
 
@@ -78,7 +78,7 @@ Functionality
 
 ### Orange
 
-Runs at: http://localhost:1338
+Runs at: http://localhost:1341
 
 - Type: Exotic
 
