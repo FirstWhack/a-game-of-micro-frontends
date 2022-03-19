@@ -11,18 +11,26 @@ import { Layer, Rect, Star } from "react-konva";
 const REDUCTION_AMOUNT = 2;
 const REDUCTION_LENGTH = 5000;
 
+const MIN_SCORE = 2;
+
 const TeleportingOrange: GamePlugin = observer(function ({
   gameStore,
 }: {
   gameStore: GameStore;
 }) {
-  const { playerPosition, setFPS, getRandomPosition, setPlayerPosition } =
-    gameStore;
+  const {
+    playerPosition,
+    setFPS,
+    getRandomPosition,
+    setPlayerPosition,
+    score,
+  } = gameStore;
 
   const [orangePosition, setPlumPosition] = React.useState(getRandomPosition());
 
   React.useEffect(() => {
     if (
+      score >= MIN_SCORE &&
       orangePosition.x === playerPosition.x &&
       orangePosition.y === playerPosition.y
     ) {
@@ -45,17 +53,19 @@ const TeleportingOrange: GamePlugin = observer(function ({
   return (
     <Layer>
       {/* orange */}
-      <Star
-        innerRadius={starSize}
-        numPoints={5}
-        outerRadius={starSize}
-        offset={{ x: -starSize, y: -starSize }}
-        stroke="orange"
-        width={starSize}
-        height={starSize}
-        x={orangePosition.x * CONSTANTS.gridSize}
-        y={orangePosition.y * CONSTANTS.gridSize}
-      />
+      {score >= MIN_SCORE && (
+        <Star
+          innerRadius={starSize}
+          numPoints={5}
+          outerRadius={starSize}
+          offset={{ x: -starSize, y: -starSize }}
+          stroke="orange"
+          width={starSize}
+          height={starSize}
+          x={orangePosition.x * CONSTANTS.gridSize}
+          y={orangePosition.y * CONSTANTS.gridSize}
+        />
+      )}
     </Layer>
   );
 });

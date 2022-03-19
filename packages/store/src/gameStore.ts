@@ -32,12 +32,17 @@ export class GameStore implements GameState {
   get frameInterval() {
     return 1000 / this.fps;
   }
+  get score() {
+    return this.tailSize - CONSTANTS.startTailSize;
+  }
 
   constructor() {
     makeObservable(this, {
       playerPosition: observable,
       trail: observable,
+      tailSize: observable,
       frameInterval: computed,
+      score: computed,
     });
 
     // setup lazy observables
@@ -105,9 +110,11 @@ export class GameStore implements GameState {
   setFPS = action((fps: GameState["fps"]) => {
     this.fps = fps;
   });
-  setPlayerPosition = action((newPlayerPosition: GameState['playerPosition']) => {
-    this.playerPosition = newPlayerPosition;
-  });
+  setPlayerPosition = action(
+    (newPlayerPosition: GameState["playerPosition"]) => {
+      this.playerPosition = newPlayerPosition;
+    }
+  );
   getRandomPosition = () => ({
     x: Math.floor(Math.random() * this.gridSize),
     y: Math.floor(Math.random() * this.gridSize),

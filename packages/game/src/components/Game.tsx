@@ -27,7 +27,7 @@ const Snake: GamePlugin = observer(function ({
   gameStore: GameStore;
 }) {
   const [plugins, setPlugins] = React.useState<(() => JSX.Element)[]>([]);
-  const { playerPosition, setVelocity, trail, setFPS, setTailSize, tailSize } =
+  const { playerPosition, setVelocity, trail, setFPS, setTailSize, score } =
     gameStore;
 
   // dynamically load all plugins
@@ -95,7 +95,7 @@ const Snake: GamePlugin = observer(function ({
         <Layer>
           {/* Overlay/Score */}
           <Text
-            text={`Score: ${tailSize - CONSTANTS.startTailSize}`}
+            text={`Score: ${score}`}
             fill="white"
             padding={10}
           />

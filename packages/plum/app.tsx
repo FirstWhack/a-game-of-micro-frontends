@@ -1,54 +1,38 @@
-import {
-  CONSTANTS,
-  GamePlugin,
-  GameStore,
-  LazyPluginProvider,
-} from "@micro-snake/engine";
+import { GamePlugin, GameStore, LazyPluginProvider } from "@micro-snake/engine";
 import { observer } from "mobx-react";
 import React from "react";
-import { Layer, Rect } from "react-konva";
+import { Layer } from "react-konva";
+import PunishingPlum from "./plum";
 
-const FPS_PENALTY = 2;
-const PENALTY_TIMEOUT = 5000;
+const MIN_PLUMS = 2;
+const PLUM_SCORE_MULTIPLIER = 0.25;
 
-const PunishingPlum: GamePlugin = observer(function ({
+const PlumContainer: GamePlugin = observer(function ({
   gameStore,
 }: {
   gameStore: GameStore;
 }) {
-  const { playerPosition, setFPS, getRandomPosition } =
-    gameStore;
+  const { score } = gameStore;
 
-  const [plumPosition, setPlumPosition] = React.useState(getRandomPosition());
-
-  React.useEffect(() => {
-    if (
-      plumPosition.x === playerPosition.x &&
-      plumPosition.y === playerPosition.y
-    ) {
-      // move the plum
-      setPlumPosition(getRandomPosition);
-      // penalize by increasing speed
-      setFPS(gameStore.fps + FPS_PENALTY);
-      // eventually remove the penalty
-      setTimeout(() => setFPS(gameStore.fps - FPS_PENALTY), PENALTY_TIMEOUT);
-    }
-  }, [plumPosition, playerPosition]);
+  const plums = React.useMemo(
+    () =>
+      Array.from(Array(Math.ceil(score * PLUM_SCORE_MULTIPLIER)), () => (
+        <PunishingPlum gameStore={gameStore} />
+      )),
+    [score]
+  );
 
   return (
     <Layer>
       {/* plum */}
-      <Rect
-        stroke="purple"
-        width={CONSTANTS.tileSize}
-        height={CONSTANTS.tileSize}
-        x={plumPosition.x * CONSTANTS.gridSize}
-        y={plumPosition.y * CONSTANTS.gridSize}
-      />
+      {plums}
     </Layer>
   );
 });
 
 export default () => (
-  <LazyPluginProvider Plugin={PunishingPlum} asyncLoad={() => import("engine/Store")} />
+  <LazyPluginProvider
+    Plugin={PlumContainer}
+    asyncLoad={() => import("engine/Store")}
+  />
 );
