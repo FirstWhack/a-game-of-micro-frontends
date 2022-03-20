@@ -19,7 +19,7 @@ This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-m
 Exposed at http://localhost:1339
 
 This module holds the game engine itself, it is a simple MobX store exposing observables and methods to modify the game state.
-No output is rendered by this module, it is only the engine.
+No output is rendered by this module.
 
 Public API:
 
