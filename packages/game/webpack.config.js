@@ -61,7 +61,8 @@ function getRemoteEntryUrl(port) {
     return `//localhost:${port}/remoteEntry.js`;
   }
 
-  return `//${
-    HOSTNAME.split('.')[0]
-  }-${port}.sse.codesandbox.io/remoteEntry.js`;
+  const parts = HOSTNAME.split('-');
+  const codesandboxId = parts[parts.length - 1];
+
+  return `//${codesandboxId}-${port}.sse.codesandbox.io/remoteEntry.js`;
 }
