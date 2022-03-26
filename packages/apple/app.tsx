@@ -42,6 +42,4 @@ const Apple: GamePlugin = observer(function ({
   );
 });
 
-export default () => (
-  <LazyPluginProvider Plugin={Apple} asyncLoad={() => import('engine/Store')} />
-);
+export default Apple;

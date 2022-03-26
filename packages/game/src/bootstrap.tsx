@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import Game from './components/Game';
+import GameManager from './components/GameManager';
+import '../styles.less';
 
 const rootElement = document.getElementById('root');
 render(
   <main>
     <section>
-      <Game />
+      <GameManager />
     </section>
   </main>,
   rootElement

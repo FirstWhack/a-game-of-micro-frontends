@@ -35,10 +35,7 @@ module.exports = {
       name: 'snake',
       filename: 'remoteEntry.js',
       remotes: {
-        apple: `apple@${getRemoteEntryUrl(1338)}`,
-        engine: `engine@${getRemoteEntryUrl(1339)}`,
-        plum: `plum@${getRemoteEntryUrl(1340)}`,
-        orange: `orange@${getRemoteEntryUrl(1341)}`
+        engine: `engine@${getRemoteEntryUrl(1339)}`
       },
       shared: [
         {

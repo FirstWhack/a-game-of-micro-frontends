@@ -1,12 +1,7 @@
-import {
-  CONSTANTS,
-  GamePlugin,
-  GameStore,
-  LazyPluginProvider
-} from '@micro-snake/engine';
+import { CONSTANTS, GamePlugin, GameStore } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
-import { Layer, Rect, Star } from 'react-konva';
+import { Layer, Star } from 'react-konva';
 
 const REDUCTION_AMOUNT = 2;
 const REDUCTION_LENGTH = 5000;
@@ -64,9 +59,4 @@ const TeleportingOrange: GamePlugin = observer(function ({
   );
 });
 
-export default () => (
-  <LazyPluginProvider
-    Plugin={TeleportingOrange}
-    asyncLoad={() => import('engine/Store')}
-  />
-);
+export default TeleportingOrange;
