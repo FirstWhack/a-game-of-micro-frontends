@@ -1,4 +1,15 @@
 import { GamePlugin } from '@micro-snake/engine';
+import {
+  Button,
+  Checkbox,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TextField
+} from '@mui/material';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { dynamicImport, getRemoteEntryUrl } from '../utils/federatedImport';
@@ -25,7 +36,7 @@ const GameManager = observer(function () {
       Component: React.lazy<GamePlugin>(() =>
         dynamicImport(getRemoteEntryUrl(1338), 'apple', 'Apple')
       ),
-      enabled: false,
+      enabled: true,
       fqdn: getRemoteEntryUrl(1338),
       module: 'Apple',
       scope: 'apple'
@@ -85,70 +96,90 @@ const GameManager = observer(function () {
   }, []);
 
   return (
-    <>
-      <section>
+    <Grid container>
+      <Grid item xs={12} lg={4}>
         <Game plugins={plugins} />
-      </section>
-      <section>
-        Active Plugins:
-        <table>
-          <thead>
-            <tr>
-              <td>FQDN</td>
-              <td>Scope</td>
-              <td>Module</td>
-              <td>Status</td>
-              <td>Action</td>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.values(plugins).map(({ module, fqdn, scope, enabled }) => {
-              return (
-                <tr key={module}>
-                  <td>
-                    <pre>{fqdn}</pre>
-                  </td>
-                  <td>{scope}</td>
-                  <td>{module}</td>
-                  <td>{enabled ? 'Active' : 'Inactive'}</td>
-                  <td>
-                    <button
-                      onClick={() => {
-                        setPlugins((state) => {
-                          state[module].enabled = !state[module].enabled;
-                          return { ...state };
-                        });
-                      }}
-                    >
-                      Toggle
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          Add plugins:
-          <label>
-            FQDN: <input name='fqdn' />
-          </label>
-          <label>
-            Scope: <input name='scope' />
-          </label>
-          <label>
-            Module: <input name='module' />
-          </label>
-          <button type='submit'>Submit</button>
-          <pre>
-            Example: Plum plugin is at {getRemoteEntryUrl(1340)}, plum, Plum
-          </pre>
-        </form>
-      </section>
-    </>
+      </Grid>
+      <Grid container xs={12} lg={4} spacing={2}>
+        <Grid item xs={12}>
+          Active Plugins:
+          <Table size='small'>
+            <TableHead>
+              <TableRow>
+                <TableCell>FQDN</TableCell>
+                <TableCell>Scope</TableCell>
+                <TableCell>Module</TableCell>
+                <TableCell>Active</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Object.values(plugins).map(
+                ({ module, fqdn, scope, enabled }) => {
+                  return (
+                    <TableRow key={module}>
+                      <TableCell>
+                        <pre>{fqdn}</pre>
+                      </TableCell>
+                      <TableCell>{scope}</TableCell>
+                      <TableCell>{module}</TableCell>
+                      <TableCell>
+                        <Checkbox
+                          color={enabled ? 'success' : 'error'}
+                          checked={enabled}
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setPlugins((state) => {
+                              state[module].enabled = event.target.checked;
+                              return { ...state };
+                            });
+                          }}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+              )}
+            </TableBody>
+          </Table>
+        </Grid>
+        <Grid item xs={12}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            Add plugins:
+            <TextField
+              margin='dense'
+              size='small'
+              label='FQDN'
+              name='fqdn'
+              placeholder={getRemoteEntryUrl(1340)}
+            />
+            <TextField
+              margin='dense'
+              size='small'
+              label='Scope'
+              name='scope'
+              placeholder='plum'
+            />
+            <TextField
+              margin='dense'
+              size='small'
+              label='Module Name'
+              name='module'
+              placeholder='Plum'
+            />
+            <Button variant='contained' type='submit'>
+              Add Plugin
+            </Button>
+            <pre>
+              Example: Plum plugin is at {getRemoteEntryUrl(1340)}, plum, Plum
+            </pre>
+          </form>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 });
 
