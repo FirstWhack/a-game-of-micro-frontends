@@ -59,7 +59,5 @@ export function getRemoteEntryUrl(port: number) {
     return `//localhost:${port}`;
   }
 
-  return `//${
-    HOSTNAME.split('.')[0]
-  }-${port}.sse.codesandbox.io/remoteEntry.js`;
+  return `//${HOSTNAME.split('.')[0]}-${port}.sse.codesandbox.io`;
 }
