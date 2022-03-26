@@ -143,7 +143,9 @@ const GameManager = observer(function () {
             Module: <input name='module' />
           </label>
           <button type='submit'>Submit</button>
-          <pre>Example: Plum plugin is at //localhost:1340, plum, Plum</pre>
+          <pre>
+            Example: Plum plugin is at {getRemoteEntryUrl(1340)}, plum, Plum
+          </pre>
         </form>
       </section>
     </>
