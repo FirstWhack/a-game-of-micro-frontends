@@ -1,5 +1,5 @@
 {
-  "name": "@micro-snake/plugin-apple",
+  "name": "@micro-snake/plugin-wildcard",
   "version": "0.0.0",
   "private": true,
   "main": "app.tsx",

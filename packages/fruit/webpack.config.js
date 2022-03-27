@@ -10,7 +10,7 @@ module.exports = {
   devtool: false,
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    port: 1340
+    port: 1338
   },
   output: {
     publicPath: 'auto'
@@ -29,10 +29,11 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'plum',
+      name: 'fruit',
       filename: 'remoteEntry.js',
       exposes: {
-        './Plum': './app'
+        './Apple': './components/apple/apple',
+        './Plum': './components/plum/plumContainer'
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`

@@ -45,7 +45,7 @@ const Snake: React.FunctionComponent<{
 
   return (
     <div
-      className='snake'
+      style={{ outline: 'none' }}
       onKeyDown={handleKeyDown.bind(null, setVelocity)}
       tabIndex={1}
     >
@@ -60,8 +60,9 @@ const Snake: React.FunctionComponent<{
         </Layer>
         <Layer>
           {/* snake */}
-          {trail.map(({ x, y }) => (
+          {trail.map(({ x, y }, i) => (
             <Rect
+              key={i}
               fill='lime'
               width={CONSTANTS.tileSize}
               height={CONSTANTS.tileSize}

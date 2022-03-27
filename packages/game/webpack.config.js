@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   entry: './index.js',
   mode: 'development',
-  devtool: false,
+  devtool: 'eval-cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1337

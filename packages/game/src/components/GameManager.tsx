@@ -34,21 +34,21 @@ const GameManager = observer(function () {
   }>({
     Apple: {
       Component: React.lazy<GamePlugin>(() =>
-        dynamicImport(getRemoteEntryUrl(1338), 'apple', 'Apple')
+        dynamicImport(getRemoteEntryUrl(1338), 'fruit', 'Apple')
       ),
       enabled: true,
       fqdn: getRemoteEntryUrl(1338),
-      module: 'Apple',
-      scope: 'apple'
+      scope: 'fruit',
+      module: 'Apple'
     },
-    Orange: {
+    Teleport: {
       Component: React.lazy<GamePlugin>(() =>
-        dynamicImport(getRemoteEntryUrl(1341), 'orange', 'Orange')
+        dynamicImport(getRemoteEntryUrl(1340), 'wildcard', 'Teleport')
       ),
       enabled: false,
-      fqdn: getRemoteEntryUrl(1341),
-      module: 'Orange',
-      scope: 'orange'
+      fqdn: getRemoteEntryUrl(1340),
+      scope: 'wildcard',
+      module: 'Teleport'
     }
   });
 
@@ -174,7 +174,7 @@ const GameManager = observer(function () {
               Add Plugin
             </Button>
             <pre>
-              Example: Plum plugin is at {getRemoteEntryUrl(1340)}, plum, Plum
+              Example: Plum plugin is at {getRemoteEntryUrl(1338)}, fruit, Plum
             </pre>
           </form>
         </Grid>

@@ -7,7 +7,7 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: {},
   mode: 'development',
-  devtool: false,
+  devtool: 'eval-cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1339
