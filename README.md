@@ -4,6 +4,10 @@ This project flips the script on Micro-Frontends expansion. Typical micro-fronte
 
 The end result is a game of Snake with runtime-plugin support.
 
+## Runtime Architecture
+
+<img src='./docs/micro-snake-diag.png' width="500"/>
+
 ## Workflows
 
 ![main](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/main.yml/badge.svg)
