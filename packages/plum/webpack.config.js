@@ -38,8 +38,11 @@ module.exports = {
       },
       shared: [
         {
-          react: { singleton: true, eager: true },
-          'react-dom': { singleton: true, eager: true },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: '^17.0.2'
+          },
           mobx: { eager: true },
           'mobx-react': { eager: true }
         }
