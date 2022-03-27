@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   entry: './index.js',
   mode: 'development',
-  devtool: 'eval-source-map',
+  devtool: 'eval-cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1337
@@ -20,10 +20,6 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   },
@@ -35,15 +31,15 @@ module.exports = {
       name: 'snake',
       filename: 'remoteEntry.js',
       remotes: {
-        apple: `apple@${getRemoteEntryUrl(1338)}`,
-        engine: `engine@${getRemoteEntryUrl(1339)}`,
-        plum: `plum@${getRemoteEntryUrl(1340)}`,
-        orange: `orange@${getRemoteEntryUrl(1341)}`
+        engine: `engine@${getRemoteEntryUrl(1339)}`
       },
       shared: [
         {
-          react: { singleton: true, eager: true },
-          'react-dom': { singleton: true, eager: true },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: '^17.0.2'
+          },
           mobx: { eager: true },
           'mobx-react': { eager: true }
         }

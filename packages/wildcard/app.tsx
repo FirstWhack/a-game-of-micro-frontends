@@ -1,19 +1,12 @@
-import {
-  CONSTANTS,
-  GamePlugin,
-  GameStore,
-  LazyPluginProvider
-} from '@micro-snake/engine';
+import { CONSTANTS, GamePlugin, GameStore } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
-import { Layer, Rect, Star } from 'react-konva';
+import { Layer, Star } from 'react-konva';
 
 const REDUCTION_AMOUNT = 2;
 const REDUCTION_LENGTH = 5000;
 
-const MIN_SCORE = 2;
-
-const TeleportingOrange: GamePlugin = observer(function ({
+const Teleport: GamePlugin = observer(function ({
   gameStore
 }: {
   gameStore: GameStore;
@@ -21,14 +14,16 @@ const TeleportingOrange: GamePlugin = observer(function ({
   const { playerPosition, setFPS, getRandomPosition, setPlayerPosition } =
     gameStore;
 
-  const [orangePosition, setPlumPosition] = React.useState(getRandomPosition());
+  const [teleportPosition, setPlumPosition] = React.useState(
+    getRandomPosition()
+  );
 
   React.useEffect(() => {
     if (
-      orangePosition.x === playerPosition.x &&
-      orangePosition.y === playerPosition.y
+      teleportPosition.x === playerPosition.x &&
+      teleportPosition.y === playerPosition.y
     ) {
-      // move the orange
+      // move the teleport
       setPlumPosition(getRandomPosition);
       // teleport the player
       setPlayerPosition(getRandomPosition());
@@ -40,13 +35,12 @@ const TeleportingOrange: GamePlugin = observer(function ({
         REDUCTION_LENGTH
       );
     }
-  }, [orangePosition, playerPosition]);
+  }, [teleportPosition, playerPosition]);
 
   const starSize = CONSTANTS.tileSize / 2;
 
   return (
     <Layer>
-      {/* orange */}
       {
         <Star
           innerRadius={starSize}
@@ -56,17 +50,12 @@ const TeleportingOrange: GamePlugin = observer(function ({
           stroke='orange'
           width={starSize}
           height={starSize}
-          x={orangePosition.x * CONSTANTS.gridSize}
-          y={orangePosition.y * CONSTANTS.gridSize}
+          x={teleportPosition.x * CONSTANTS.gridSize}
+          y={teleportPosition.y * CONSTANTS.gridSize}
         />
       }
     </Layer>
   );
 });
 
-export default () => (
-  <LazyPluginProvider
-    Plugin={TeleportingOrange}
-    asyncLoad={() => import('engine/Store')}
-  />
-);
+export default Teleport;

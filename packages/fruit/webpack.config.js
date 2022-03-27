@@ -7,9 +7,10 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: './index.js',
   mode: 'development',
+  devtool: false,
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    port: 1340
+    port: 1338
   },
   output: {
     publicPath: 'auto'
@@ -28,18 +29,22 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'plum',
+      name: 'fruit',
       filename: 'remoteEntry.js',
       exposes: {
-        './Plum': './app'
+        './Apple': './components/apple/apple',
+        './Plum': './components/plum/plumContainer'
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`
       },
       shared: [
         {
-          react: { singleton: true, eager: true },
-          'react-dom': { singleton: true, eager: true },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: '^17.0.2'
+          },
           mobx: { eager: true },
           'mobx-react': { eager: true }
         }

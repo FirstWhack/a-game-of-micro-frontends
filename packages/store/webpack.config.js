@@ -7,7 +7,7 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: {},
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'eval-cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1339
@@ -44,8 +44,11 @@ module.exports = {
       },
       shared: [
         {
-          react: { singleton: true, eager: true },
-          'react-dom': { singleton: true, eager: true },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: '^17.0.2'
+          },
           mobx: { eager: true },
           'mobx-react': { eager: true }
         }

@@ -1,10 +1,10 @@
-import { GamePlugin, GameStore, LazyPluginProvider } from '@micro-snake/engine';
+import { GamePlugin, GameStore } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Layer } from 'react-konva';
 import PunishingPlum from './plum';
 
-const MIN_PLUMS = 2;
+const MIN_PLUMS = 1;
 const PLUM_SCORE_MULTIPLIER = 0.25;
 
 const PlumContainer: GamePlugin = observer(function ({
@@ -17,7 +17,7 @@ const PlumContainer: GamePlugin = observer(function ({
   const plums = React.useMemo(
     () =>
       Array.from(
-        Array(Math.max(Math.ceil(score * PLUM_SCORE_MULTIPLIER), 1)),
+        Array(Math.max(Math.ceil(score * PLUM_SCORE_MULTIPLIER), MIN_PLUMS)),
         () => <PunishingPlum gameStore={gameStore} />
       ),
     [score]
@@ -31,9 +31,4 @@ const PlumContainer: GamePlugin = observer(function ({
   );
 });
 
-export default () => (
-  <LazyPluginProvider
-    Plugin={PlumContainer}
-    asyncLoad={() => import('engine/Store')}
-  />
-);
+export default PlumContainer;

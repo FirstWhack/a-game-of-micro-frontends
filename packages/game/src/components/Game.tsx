@@ -1,8 +1,5 @@
-// import RewardApple from "./RewardApple";
-// import PunishingPlum from "./PunishingPlum";
 import {
   CONSTANTS,
-  GamePlugin,
   GameState,
   GameStore,
   LazyPluginProvider,
@@ -10,7 +7,8 @@ import {
 } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Layer, Rect, Stage, Text } from 'react-konva';
+import { Layer, Rect, Stage } from 'react-konva';
+import { Plugins } from './GameManager';
 import Overlay from './Overlay';
 
 const handleKeyDown = (
@@ -22,28 +20,12 @@ const handleKeyDown = (
   }
 };
 
-const Snake: GamePlugin = observer(function ({
-  gameStore
-}: {
+const Snake: React.FunctionComponent<{
   gameStore: GameStore;
-}) {
-  const [plugins, setPlugins] = React.useState<(() => JSX.Element)[]>([]);
+  plugins?: Plugins;
+}> = observer(function ({ gameStore, plugins = {} }) {
   const { playerPosition, setVelocity, trail, setFPS, setTailSize, score } =
     gameStore;
-
-  // dynamically load all plugins
-  // TODO: Runtime plugin management
-  React.useEffect(() => {
-    Promise.all([
-      import('apple/Apple'),
-      import('plum/Plum'),
-      import('orange/Orange')
-    ]).then((resolvedPlugins) => {
-      setPlugins(
-        plugins.concat(resolvedPlugins.map((plugin) => plugin.default))
-      );
-    });
-  }, []);
 
   React.useEffect(() => {
     // check to see if the head has contacted any part of the body
@@ -63,7 +45,7 @@ const Snake: GamePlugin = observer(function ({
 
   return (
     <div
-      className='snake'
+      style={{ outline: 'none' }}
       onKeyDown={handleKeyDown.bind(null, setVelocity)}
       tabIndex={1}
     >
@@ -78,8 +60,9 @@ const Snake: GamePlugin = observer(function ({
         </Layer>
         <Layer>
           {/* snake */}
-          {trail.map(({ x, y }) => (
+          {trail.map(({ x, y }, i) => (
             <Rect
+              key={i}
               fill='lime'
               width={CONSTANTS.tileSize}
               height={CONSTANTS.tileSize}
@@ -89,9 +72,13 @@ const Snake: GamePlugin = observer(function ({
           ))}
         </Layer>
         {/* add remote plugins */}
-        {plugins.map((Plugin) => (
-          <Plugin />
-        ))}
+        {Object.values(plugins)
+          .filter(({ enabled }) => enabled)
+          .map(({ Component, module }) => (
+            <React.Suspense fallback={null} key={module}>
+              <Component gameStore={gameStore} />
+            </React.Suspense>
+          ))}
         {/* this is a local plugin */}
         <Overlay gameStore={gameStore} />
       </Stage>
@@ -99,6 +86,10 @@ const Snake: GamePlugin = observer(function ({
   );
 });
 
-export default () => (
-  <LazyPluginProvider Plugin={Snake} asyncLoad={() => import('engine/Store')} />
+export default ({ plugins }: { plugins?: Plugins }) => (
+  <LazyPluginProvider
+    Plugin={Snake}
+    plugins={plugins}
+    asyncLoad={() => import('engine/Store')}
+  />
 );

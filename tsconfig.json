@@ -13,10 +13,7 @@
     "declaration": true,
     "declarationDir": "./types",
     "paths": {
-      "engine/Store": ["node_modules/@micro-snake/engine/src/gameStore.ts"],
-      "apple/Apple": ["node_modules/@micro-snake/plugin-apple"],
-      "plum/Plum": ["node_modules/@micro-snake/plugin-plum"],
-      "orange/Orange": ["node_modules/@micro-snake/plugin-orange"]
+      "engine/Store": ["node_modules/@micro-snake/engine/src/gameStore.ts"]
     }
   },
   "experimentalDecorators": true

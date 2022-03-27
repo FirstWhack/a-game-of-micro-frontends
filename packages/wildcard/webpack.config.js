@@ -7,10 +7,10 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: './index.js',
   mode: 'development',
-  devtool: 'source-map',
+  devtool: 'eval-cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    port: 1338
+    port: 1340
   },
   output: {
     publicPath: 'auto'
@@ -29,18 +29,21 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'apple',
+      name: 'wildcard',
       filename: 'remoteEntry.js',
       exposes: {
-        './Apple': './app'
+        './Teleport': './app'
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`
       },
       shared: [
         {
-          react: { singleton: true, eager: true },
-          'react-dom': { singleton: true, eager: true },
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: '^17.0.2'
+          },
           mobx: { eager: true },
           'mobx-react': { eager: true }
         }
