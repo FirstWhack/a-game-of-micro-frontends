@@ -5,8 +5,8 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Stage } from 'react-konva';
-import Apple from './components/apple/apple';
-import Plums from './components/plum/plumContainer';
+import Apple from './src/components/apple/apple';
+import Plums from './src/components/plum/plumContainer';
 
 const storePromise = import('engine/Store');
 

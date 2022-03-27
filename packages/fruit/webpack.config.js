@@ -32,8 +32,8 @@ module.exports = {
       name: 'fruit',
       filename: 'remoteEntry.js',
       exposes: {
-        './Apple': './components/apple/apple',
-        './Plum': './components/plum/plumContainer'
+        './Apple': './src/components/apple/apple',
+        './Plum': './src/components/plum/plumContainer'
       },
       remotes: {
         engine: `engine@${getRemoteEntryUrl(1339)}`

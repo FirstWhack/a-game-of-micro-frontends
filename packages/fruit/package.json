@@ -2,7 +2,7 @@
   "name": "@micro-snake/plugin-fruit",
   "version": "0.0.0",
   "private": true,
-  "main": "app.tsx",
+  "main": "src/components/index.ts",
   "devDependencies": {
     "@babel/core": "7.14.3",
     "@babel/preset-react": "7.13.13",
