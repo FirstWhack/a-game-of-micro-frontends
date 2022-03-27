@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   entry: './index.js',
   mode: 'development',
-  devtool: 'eval-source-map',
+  devtool: false,
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1337
@@ -20,10 +20,6 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   },

@@ -7,7 +7,7 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: {},
   mode: 'development',
-  devtool: 'source-map',
+  devtool: false,
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1339

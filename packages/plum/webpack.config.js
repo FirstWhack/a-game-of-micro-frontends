@@ -7,6 +7,7 @@ const { ModuleFederationPlugin } = webpack.container;
 module.exports = {
   entry: './index.js',
   mode: 'development',
+  devtool: false,
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 1340
