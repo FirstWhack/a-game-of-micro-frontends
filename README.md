@@ -6,7 +6,7 @@ The end result is a game of Snake with runtime-plugin support.
 
 ## Runtime Architecture
 
-<img src='./docs/micro-snake-diag.png' width="500"/>
+<img src='./docs/micro-snake-diag.png' width="600"/>
 
 ## Workflows
 
