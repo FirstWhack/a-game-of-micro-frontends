@@ -11,12 +11,19 @@ import { Layer, Rect, Stage } from 'react-konva';
 import { Plugins } from './GameManager';
 import Overlay from './Overlay';
 
-const handleKeyDown = (
-  setVelocity: (velocity: GameState['velocity']) => void,
-  { keyCode }: React.KeyboardEvent<HTMLDivElement>
+const maybeGetVelocityFromKeyDown = (
+  { keyCode }: React.KeyboardEvent<HTMLDivElement>,
+  currentVelocity: GameState['velocity']
 ) => {
-  if (velocityByKeyCode[keyCode]) {
-    setVelocity(velocityByKeyCode[keyCode]);
+  const newVelocity = velocityByKeyCode[keyCode];
+
+  if (
+    newVelocity &&
+    // no "reverse"
+    (currentVelocity.x === 0 || currentVelocity.x !== -newVelocity.x) &&
+    (currentVelocity.y === 0 || currentVelocity.y !== -newVelocity.y)
+  ) {
+    return velocityByKeyCode[keyCode];
   }
 };
 
@@ -24,7 +31,7 @@ const Snake: React.FunctionComponent<{
   gameStore: GameStore;
   plugins?: Plugins;
 }> = observer(function ({ gameStore, plugins = {} }) {
-  const { playerPosition, setVelocity, trail, setFPS, setTailSize, score } =
+  const { playerPosition, setVelocity, trail, setFPS, setTailSize, velocity } =
     gameStore;
 
   React.useEffect(() => {
@@ -43,12 +50,18 @@ const Snake: React.FunctionComponent<{
     }
   }, [playerPosition, trail]);
 
+  const handleKeyDownMemo = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const newVelocity = maybeGetVelocityFromKeyDown(event, velocity);
+      if (newVelocity) {
+        setVelocity(newVelocity);
+      }
+    },
+    [velocity]
+  );
+
   return (
-    <div
-      style={{ outline: 'none' }}
-      onKeyDown={handleKeyDown.bind(null, setVelocity)}
-      tabIndex={1}
-    >
+    <div style={{ outline: 'none' }} onKeyDown={handleKeyDownMemo} tabIndex={1}>
       <Stage width={CONSTANTS.canvasSize} height={CONSTANTS.canvasSize}>
         <Layer>
           {/* background */}

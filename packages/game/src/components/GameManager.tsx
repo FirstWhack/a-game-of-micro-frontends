@@ -10,7 +10,6 @@ import {
   TableRow,
   TextField
 } from '@mui/material';
-import { observer } from 'mobx-react';
 import * as React from 'react';
 import { dynamicImport, getRemoteEntryUrl } from '../utils/federatedImport';
 import Game from './Game';
@@ -28,7 +27,7 @@ export interface Plugins {
 }
 
 // manage game plugins for the game
-const GameManager = observer(function () {
+const GameManager = function () {
   const [plugins, setPlugins] = React.useState<{
     [pluginName: string]: PluginState;
   }>({
@@ -181,6 +180,6 @@ const GameManager = observer(function () {
       </Grid>
     </Grid>
   );
-});
+};
 
 export default GameManager;
