@@ -57,37 +57,33 @@ This module also resolves any plugins at runtime via Webpack's Module Federation
 
 Plugins are allowed to do almost anything they would like.
 
-At a minimum, a plugin is expected to consume the game state from GameStore, render something into it's own `<Layer>` (it's own `<canvas>` element), and register a reaction based on GameState to produce side-affects.
+At a minimum, a plugin is expected to consume the game state from prop `gameStore`, render something into it's own `<Layer>` (it's own `<canvas>` element), and register a reaction to produce a side-affect.
 
-### Apple
+### Fruit
 
-Runs at: http://localhost:1338
+Exposed at: http://localhost:1338
+
+#### Apple
 
 - Type: Reward
+- Tunctionality
+  - Renders a Red `<Rect>` to a random position in the canvas
+  - Reacts to changes in Player/Apple Position, when collisions occur the Tail Size is increased
 
-Functionality
-
-- Renders a Red `<Rect>` to a random position in the canvas
-- Reacts to changes in Player/Apple Position, when collisions occur the Tail Size is increased
-
-### Plum
-
-Runs at: http://localhost:1340
+#### Plum
 
 - Type: Penalty
+- Functionality
+  - Renders a Purple `<Rect>` to a random position in the canvas
+  - Reacts to changes in Player/Plum Position, when collisions occur the game speed is increased for a short duration, eventually returning to the non-penalized state.
 
-Functionality
+### Wildcard
 
-- Renders a Purple `<Rect>` to a random position in the canvas
-- Reacts to changes in Player/Plum Position, when collisions occur the game speed is increased for a short duration, eventually returning to the non-penalized state.
+Exposed at: http://localhost:1340
 
-### Orange
-
-Runs at: http://localhost:1341
+#### Teleport
 
 - Type: Exotic
-
-Functionality
-
-- Renders an Orange `<Star>` to a random position in the canvas
-- Reacts to changes in Player/Orange Position, when collisions occur the Player Position is set to a random location. The GameStore continues to advance the Player based on existing Velocity from the new position.
+- Functionality
+  - Renders an Orange `<Star>` to a random position in the canvas
+  - Reacts to changes in Player/Orange Position, when collisions occur the Player Position is set to a random location. The GameStore continues to advance the Player based on existing Velocity from the new position.
