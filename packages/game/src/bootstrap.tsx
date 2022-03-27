@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import GameManager from './components/GameManager';
-import '../styles.less';
+// import '../styles.less';
 
 const rootElement = document.getElementById('root');
 render(
