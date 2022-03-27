@@ -1,8 +1,7 @@
 import {
   CONSTANTS as GameConstants,
   GamePlugin,
-  GameStore,
-  LazyPluginProvider
+  GameStore
 } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';

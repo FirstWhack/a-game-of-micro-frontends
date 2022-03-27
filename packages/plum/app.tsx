@@ -1,4 +1,4 @@
-import { GamePlugin, GameStore, LazyPluginProvider } from '@micro-snake/engine';
+import { GamePlugin, GameStore } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Layer } from 'react-konva';

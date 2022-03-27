@@ -6,8 +6,6 @@ import { Layer, Star } from 'react-konva';
 const REDUCTION_AMOUNT = 2;
 const REDUCTION_LENGTH = 5000;
 
-const MIN_SCORE = 2;
-
 const TeleportingOrange: GamePlugin = observer(function ({
   gameStore
 }: {

@@ -19,7 +19,7 @@
     "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "start": "webpack-cli serve",
+    "start": "webpack serve",
     "build": "webpack --mode production",
     "serve": "serve dist -p 1339",
     "clean": "rm -rf dist"
