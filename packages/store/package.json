@@ -2,8 +2,11 @@
   "name": "@micro-snake/engine",
   "description": "This module is expected to be published on it's own. It could also be federated depending on it's nature ",
   "version": "0.1.0",
-  "private": true,
-  "main": "src/index.ts",
+  "main": "index.ts",
+  "files": [
+    "index.ts",
+    "src"
+  ],
   "devDependencies": {
     "@babel/core": "7.14.3",
     "@babel/preset-react": "7.13.13",
