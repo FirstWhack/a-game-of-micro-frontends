@@ -11,7 +11,10 @@ The end result is a game of Snake with runtime-plugin support.
 
 #### Github Pages
 
-[firstwhack.github.io/a-game-of-micro-frontends/game](https://firstwhack.github.io/a-game-of-micro-frontends/game)
+- Main Game: [firstwhack.github.io/a-game-of-micro-frontends/game](https://firstwhack.github.io/a-game-of-micro-frontends/game)
+- [firstwhack.github.io/a-game-of-micro-frontends/store](https://firstwhack.github.io/a-game-of-micro-frontends/store)
+- [firstwhack.github.io/a-game-of-micro-frontends/fruit](https://firstwhack.github.io/a-game-of-micro-frontends/fruit)
+- [firstwhack.github.io/a-game-of-micro-frontends/wildcard](https://firstwhack.github.io/a-game-of-micro-frontends/wildcard)
 
 #### Online IDE
 
