@@ -28,12 +28,23 @@ jobs:
       - name: Deploy Store 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: packages/store/dist # The folder the action should deploy.
+          branch: gh-pages
+          folder: packages/store/dist
           target-folder: store
       - name: Deploy Fruit 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: packages/fruit/dist # The folder the action should deploy.
+          branch: gh-pages
+          folder: packages/fruit/dist
           target-folder: fruit
+      - name: Deploy Wildcard 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: packages/wildcard/dist
+          target-folder: wildcard
+      - name: Deploy Game 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: packages/game/dist

@@ -3,8 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { ModuleFederationPlugin } = webpack.container;
+const storeHomepage = require('@micro-snake/engine/package.json').homepage;
 
-module.exports = {
+module.exports = (_, argv) => ({
   entry: './index.js',
   mode: 'development',
   devtool: 'eval-cheap-source-map',
@@ -35,7 +36,11 @@ module.exports = {
         './Teleport': './app'
       },
       remotes: {
-        engine: `engine@${getRemoteEntryUrl(1339)}`
+        engine: `engine@${
+          argv.mode === 'production'
+            ? `${storeHomepage}/remoteEntry.js`
+            : getRemoteEntryUrl(1339)
+        }`
       },
       shared: [
         {
@@ -53,7 +58,7 @@ module.exports = {
       template: './index.html'
     })
   ]
-};
+});
 
 function getRemoteEntryUrl(port) {
   const { CODESANDBOX_SSE, HOSTNAME = '' } = process.env;
