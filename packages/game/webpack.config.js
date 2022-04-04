@@ -3,6 +3,7 @@ const ModuleFederationPlugin =
   require('webpack').container.ModuleFederationPlugin;
 const path = require('path');
 const storeHomepage = require('@micro-snake/engine/package.json').homepage;
+const deps = require('./package.json').dependencies;
 
 module.exports = (_, argv) => ({
   entry: './index.js',
@@ -24,17 +25,6 @@ module.exports = (_, argv) => ({
       }
     ]
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/](@mui)[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
-        }
-      }
-    }
-  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
@@ -53,11 +43,18 @@ module.exports = (_, argv) => ({
         {
           react: {
             singleton: true,
-            eager: true,
-            requiredVersion: '^17.0.2'
+            requiredVersion: deps.react
           },
-          mobx: { eager: true },
-          'mobx-react': { eager: true }
+          'react-konva': {
+            singleton: true,
+            requiredVersion: deps['react-konva']
+          },
+          konva: {
+            singleton: true,
+            requiredVersion: deps.konva
+          },
+          mobx: { singleton: true, requiredVersion: deps.mobx },
+          'mobx-react': { singleton: true, requiredVersion: deps['mobx-react'] }
         }
       ]
     }),
