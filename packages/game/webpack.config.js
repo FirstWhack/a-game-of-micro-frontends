@@ -2,10 +2,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin =
   require('webpack').container.ModuleFederationPlugin;
 const path = require('path');
+const storeHomepage = require('@micro-snake/engine/package.json').homepage;
 
-module.exports = {
+module.exports = (_, argv) => ({
   entry: './index.js',
-  mode: 'development',
+  mode: argv.mode,
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -23,6 +24,17 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](@mui)[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
@@ -31,7 +43,11 @@ module.exports = {
       name: 'snake',
       filename: 'remoteEntry.js',
       remotes: {
-        engine: `engine@${getRemoteEntryUrl(1339)}`
+        engine: `engine@${
+          argv.mode === 'production'
+            ? `${storeHomepage}/remoteEntry.js`
+            : getRemoteEntryUrl(1339)
+        }`
       },
       shared: [
         {
@@ -49,7 +65,7 @@ module.exports = {
       template: './index.html'
     })
   ]
-};
+});
 
 function getRemoteEntryUrl(port) {
   const { HOSTNAME = '' } = process.env;

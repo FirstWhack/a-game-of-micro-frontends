@@ -7,6 +7,7 @@
     "index.ts",
     "src"
   ],
+  "homepage": "https://firstwhack.github.io/a-game-of-micro-frontends/store",
   "repository": {
     "type": "git",
     "url": "https://github.com/FirstWhack/a-game-of-micro-frontends"
@@ -26,7 +27,7 @@
     "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "serve": "serve dist -p 1339",
     "clean": "rm -rf dist"

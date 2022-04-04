@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "main": "src/components/index.ts",
+  "homepage": "https://firstwhack.github.io/a-game-of-micro-frontends/fruit",
   "devDependencies": {
     "@babel/core": "7.14.3",
     "@babel/preset-react": "7.13.13",
@@ -18,7 +19,7 @@
     "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "serve": "serve dist -p 1338",
     "clean": "rm -rf dist"
