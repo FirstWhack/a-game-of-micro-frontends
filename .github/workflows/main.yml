@@ -1,10 +1,8 @@
-name: CI
+name: Build
 
 on:
-  push:
-    branches: [pages-workflow]
-  # pull_request:
-  #   branches: [ main ]
+  pull_request:
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,27 +23,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install
       - run: yarn build
-      - name: Deploy Store 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: packages/store/dist
-          target-folder: store
-      - name: Deploy Fruit 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: packages/fruit/dist
-          target-folder: fruit
-      - name: Deploy Wildcard 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: packages/wildcard/dist
-          target-folder: wildcard
-      - name: Deploy Game 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: packages/game/dist
-          target-folder: game
+      # test lol
