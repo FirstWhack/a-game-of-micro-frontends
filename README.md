@@ -1,20 +1,25 @@
 # Snake with Runtime Plugin Support
 
+![main](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/main.yml/badge.svg)
+![build-and-deploy](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/build-deploy.yml/badge.svg)
+
 This project flips the script on Micro-Frontends expansion. Typical micro-frontends extend functionality in a lateral/horizontal manner, adding additional pages or components. This project exemplifies Micro-Frontends in a "stacking" or vertically expanding manner, each Micro-Frontend rendering it's own `<canvas>` to be stacked on top of all other canvas.
 
 The end result is a game of Snake with runtime-plugin support.
 
+## Play
+
+#### Github Pages
+
+[firstwhack.github.io/a-game-of-micro-frontends/game](https://firstwhack.github.io/a-game-of-micro-frontends/game)
+
+#### Online IDE
+
+This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)!
+
 ## Runtime Architecture
 
 <img src='./docs/micro-snake-diag.png' width="600"/>
-
-## Workflows
-
-![main](https://github.com/FirstWhack/a-game-of-micro-frontends/actions/workflows/main.yml/badge.svg)
-
-## Online IDE
-
-This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)!
 
 # Contents
 
