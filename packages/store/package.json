@@ -1,12 +1,16 @@
 {
   "name": "@micro-snake/engine",
   "description": "This module is expected to be published on it's own. It could also be federated depending on it's nature ",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "index.ts",
   "files": [
     "index.ts",
     "src"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FirstWhack/a-game-of-micro-frontends"
+  },
   "devDependencies": {
     "@babel/core": "7.14.3",
     "@babel/preset-react": "7.13.13",

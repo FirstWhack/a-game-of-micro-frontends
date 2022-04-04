@@ -5,6 +5,10 @@
       "packages/**"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FirstWhack/a-game-of-micro-frontends"
+  },
   "scripts": {
     "start:sandbox": "yarn install && yarn start",
     "start": "yarn workspaces foreach -piv run start",
