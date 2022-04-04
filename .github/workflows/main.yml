@@ -48,3 +48,4 @@ jobs:
         with:
           branch: gh-pages
           folder: packages/game/dist
+          target-folder: game
