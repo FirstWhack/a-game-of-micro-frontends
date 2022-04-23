@@ -66,6 +66,13 @@ This module also resolves any plugins at runtime via Webpack's Module Federation
 
 ### Plugin Information
 
+Plugins are only stored in this monorepo for example sake.
+See external plugins examples:
+
+- https://github.com/FirstWhack/snake-plugin-example
+
+- https://firstwhack.github.io/snake-plugin-example/
+
 Plugins are allowed to do almost anything they would like.
 
 At a minimum, a plugin is expected to consume the game state from prop `gameStore`, render something into it's own `<Layer>` (it's own `<canvas>` element), and register a reaction to produce a side-affect.
