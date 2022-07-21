@@ -17,7 +17,7 @@ The end result is a game of Snake with runtime-plugin support.
 
 #### Online IDE
 
-This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)!
+This example runs in [Code Sandbox](https://githubbox.com/FirstWhack/a-game-of-micro-frontends)! (**You may need to Fork the sandbox, then run `yarn install` in a terminal and restart the sandbox to clear the state-file error. This is due to some combination of user-error and Yarn3 "install" quirks on a Container sandbox.**)
 
 ## Runtime Architecture
 
