@@ -21,14 +21,6 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-react']
-        }
       }
     ]
   },
