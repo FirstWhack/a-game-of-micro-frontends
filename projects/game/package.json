@@ -14,13 +14,10 @@
     "html-webpack-plugin": "5.3.1",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
-    "serve": "11.3.2",
+    "serve": "14.1.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.5",
-    "webpack": "5.37.1",
-    "webpack-cli": "4.9.0",
-    "webpack-dev-server": "3.11.2"
+    "typescript": "^4.5.5"
   },
   "scripts": {
     "start": "webpack serve --mode development",
@@ -32,6 +29,8 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@micro-snake/engine": "workspace:*",
+    "@micro-snake/plugin-fruit": "workspace:*",
+    "@micro-snake/plugin-wildcard": "workspace:*",
     "@mui/material": "^5.5.2",
     "konva": "^8.3.4",
     "mobx": "^6.3.13",

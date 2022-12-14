@@ -5,6 +5,12 @@ const path = require('path');
 const storeHomepage = require('@micro-snake/engine/package.json').homepage;
 const deps = require('./package.json').dependencies;
 
+// some webpack5/Node18 quirk, better than going with legacy openssl provider :shrug:
+const crypto = require("crypto");
+const crypto_orig_createHash = crypto.createHash;
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
+
+
 module.exports = (_, argv) => ({
   entry: './index.js',
   mode: argv.mode,
@@ -14,7 +20,8 @@ module.exports = (_, argv) => ({
     port: 1337
   },
   output: {
-    publicPath: 'auto'
+    publicPath: 'auto',
+    hashFunction: "sha256"
   },
   module: {
     rules: [

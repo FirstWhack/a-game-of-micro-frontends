@@ -1,0 +1,18 @@
+{
+  "name": "@micro-snake/game",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "application",
+  "targets": {
+    "start-game": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+            { "command": "nx run-many --target=serve --exclude @micro-snake/game" },
+            { "command": "nx run @micro-snake/game:serve" }
+        ]
+      },
+      "outputs": ["{projectRoot}/dist"]
+    }
+  },
+  "tags": ["scope:game"]
+}

@@ -1,6 +1,6 @@
 node_modules
 .vscode
-packages/**/dist
+**/dist
 .yarn/cache
 .yarn/install-state.gz
 types/*

@@ -1,0 +1,6 @@
+{
+  "name": "@micro-snake/engine",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "tags": ["scope:federated"]
+}
