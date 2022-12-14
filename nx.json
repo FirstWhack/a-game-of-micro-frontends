@@ -3,9 +3,27 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": []
+        "cacheableOperations": ["build"],
+        "parallel": 10
       }
     }
   },
-  "defaultBase": "main"
+  "namedInputs": {
+    "production": ["!{projectRoot}/**/*.spec.tsx"]
+  },
+  "targetDefaults": {
+    "serve": {
+      "dependsOn": ["build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "build": {
+      "inputs": ["production"],
+      "outputs": ["{projectRoot}/dist"]
+    }
+  },
+  "defaultBase": "main",
+  "workspaceLayout": {
+    "appsDir": "projects",
+    "libsDir": "packages"
+  }
 }

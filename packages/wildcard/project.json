@@ -1,0 +1,6 @@
+{
+  "name": "@micro-snake/plugin-wildcard",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "tags": ["scope:federated"]
+}

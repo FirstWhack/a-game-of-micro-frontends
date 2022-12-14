@@ -1,0 +1,6 @@
+{
+  "name": "@micro-snake/plugin-fruit",
+  "sourceRoot": "{projectRoot}/src",
+  "projectType": "library",
+  "tags": ["scope:federated"]
+}

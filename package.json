@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/**"
+      "packages/**",
+      "projects/**"
     ]
   },
   "homepage": "https://firstwhack.github.io/a-game-of-micro-frontends",
@@ -11,8 +12,8 @@
     "url": "https://github.com/FirstWhack/a-game-of-micro-frontends"
   },
   "scripts": {
-    "start:sandbox": "yarn install && nx run-many --target=start --parallel --maxParallel=9001 --output-style=stream",
-    "start": "nx run-many --target=start --parallel --maxParallel=9001 --output-style=stream",
+    "start:sandbox": "yarn install && nx start-game @micro-snake/game --output-style=stream",
+    "start": "nx start-game @micro-snake/game --output-style=stream",
     "build": "nx run-many --target=build --output-style=stream",
     "postinstall": "husky install",
     "pretty-quick": "pretty-quick"
@@ -22,6 +23,8 @@
   "description": "",
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
+    "@nrwl/cli": "^15.3.3",
+    "@nrwl/workspace": "^15.3.3",
     "husky": "^7.0.0",
     "nx": "15.3.3",
     "prettier": "^2.6.0",

@@ -22,5 +22,5 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - run: yarn install
-      - run: yarn exec nx run-many --target=build
+      - run: yarn build
       # test lol
