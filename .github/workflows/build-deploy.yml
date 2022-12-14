@@ -23,7 +23,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - run: yarn install
-      - run: yarn build
+      - run: yarn exec nx run-many --target=build
       - name: Deploy Store 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
