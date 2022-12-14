@@ -1,8 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const { ModuleFederationPlugin } = webpack.container;
+
+// some webpack5/Node18 quirk, better than going with legacy openssl provider :shrug:
+const crypto = require("crypto");
+const crypto_orig_createHash = crypto.createHash;
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
 
 module.exports = {
   entry: {},
@@ -13,7 +16,8 @@ module.exports = {
     port: 1339
   },
   output: {
-    publicPath: 'auto'
+    publicPath: 'auto',
+    hashFunction: "sha256"
   },
   module: {
     rules: [

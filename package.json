@@ -11,9 +11,9 @@
     "url": "https://github.com/FirstWhack/a-game-of-micro-frontends"
   },
   "scripts": {
-    "start:sandbox": "yarn install && yarn start",
-    "start": "yarn workspaces foreach -piv run start",
-    "build": "yarn workspaces foreach -pivt run build",
+    "start:sandbox": "yarn install && nx run-many --target=start --parallel --maxParallel=9001 --output-style=stream",
+    "start": "nx run-many --target=start --parallel --maxParallel=9001 --output-style=stream",
+    "build": "nx run-many --target=build --output-style=stream",
     "postinstall": "husky install",
     "pretty-quick": "pretty-quick"
   },
@@ -25,7 +25,7 @@
     "husky": "^7.0.0",
     "nx": "15.3.3",
     "prettier": "^2.6.0",
-    "webpack": "5.37.1",
+    "webpack": "5.75.0",
     "webpack-cli": "4.9.0",
     "webpack-dev-server": "3.11.2"
   }
