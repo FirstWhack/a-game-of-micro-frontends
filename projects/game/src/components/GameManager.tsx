@@ -1,4 +1,4 @@
-import { GamePlugin } from '@micro-snake/engine';
+import { GamePlugin, RemoteGamePlugin } from '@micro-snake/engine';
 import {
   Button,
   Checkbox,
@@ -19,7 +19,7 @@ export interface PluginState {
   fqdn: string;
   module: string;
   scope: string;
-  Component: React.LazyExoticComponent<GamePlugin>;
+  Component: React.LazyExoticComponent<GamePlugin | RemoteGamePlugin>;
 }
 
 export interface Plugins {
@@ -32,7 +32,7 @@ const GameManager = function () {
     [pluginName: string]: PluginState;
   }>({
     Apple: {
-      Component: React.lazy<GamePlugin>(() =>
+      Component: React.lazy<RemoteGamePlugin>(() =>
         dynamicImport(getRemoteEntryUrl(1338, 'fruit'), 'fruit', 'Apple')
       ),
       enabled: true,
@@ -41,7 +41,7 @@ const GameManager = function () {
       module: 'Apple'
     },
     Teleport: {
-      Component: React.lazy<GamePlugin>(() =>
+      Component: React.lazy<RemoteGamePlugin>(() =>
         dynamicImport(
           getRemoteEntryUrl(1340, 'wildcard'),
           'wildcard',
@@ -73,7 +73,7 @@ const GameManager = function () {
             enabled: true,
             module,
             scope,
-            Component: React.lazy<GamePlugin>(() =>
+            Component: React.lazy<RemoteGamePlugin>(() =>
               dynamicImport(fqdn, scope, module)
             )
           }

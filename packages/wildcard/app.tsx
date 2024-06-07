@@ -1,4 +1,9 @@
-import { CONSTANTS, GamePlugin, GameStore } from '@micro-snake/engine';
+import {
+  CONSTANTS,
+  GamePlugin,
+  GameStore,
+  LazyPluginProvider
+} from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Layer, Star } from 'react-konva';
@@ -58,4 +63,9 @@ const Teleport: GamePlugin = observer(function ({
   );
 });
 
-export default Teleport;
+export { Teleport };
+export default (() => <LazyPluginProvider
+    Plugin={Teleport}
+    asyncLoad={() => import('engine/Store')}
+  />
+);

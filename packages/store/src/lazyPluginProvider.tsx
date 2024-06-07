@@ -1,5 +1,5 @@
 import React from 'react';
-import { GamePlugin, GameStore } from './gameStore';
+import { RemoteGamePlugin, GameStore, GamePlugin } from './gameStore';
 
 export type LazyPluginProvider = React.FunctionComponent<{
   Plugin: GamePlugin;

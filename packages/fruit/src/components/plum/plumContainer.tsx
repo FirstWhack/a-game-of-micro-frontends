@@ -1,4 +1,4 @@
-import { GamePlugin, GameStore } from '@micro-snake/engine';
+import { GamePlugin, GameStore, LazyPluginProvider } from '@micro-snake/engine';
 import { observer } from 'mobx-react';
 import React from 'react';
 import { Layer } from 'react-konva';
@@ -31,4 +31,10 @@ const PlumContainer: GamePlugin = observer(function ({
   );
 });
 
-export default PlumContainer;
+export { PlumContainer };
+export default () => (
+  <LazyPluginProvider
+    Plugin={PlumContainer}
+    asyncLoad={() => import('engine/Store')}
+  />
+);
