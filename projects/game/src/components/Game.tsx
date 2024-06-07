@@ -89,7 +89,7 @@ const Snake: React.FunctionComponent<{
           .filter(({ enabled }) => enabled)
           .map(({ Component, module }) => (
             <React.Suspense fallback={null} key={module}>
-              <Component gameStore={gameStore} />
+              <Component />
             </React.Suspense>
           ))}
         {/* this is a local plugin */}

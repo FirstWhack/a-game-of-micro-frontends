@@ -129,3 +129,4 @@ export const GameStoreInstance = new GameStore();
 export const GameStoreContext = createContext(GameStoreInstance);
 
 export type GamePlugin = React.FunctionComponent<{ gameStore: GameStore }>;
+export type RemoteGamePlugin = React.FunctionComponent;
